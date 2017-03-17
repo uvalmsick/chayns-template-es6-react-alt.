@@ -1,26 +1,29 @@
 import React from 'react';
 
-import {Mode} from 'tobit-chayns_components/react-chayns-modeswitch';
 import PersonFinder from 'tobit-chayns_components/react-chayns-personfinder';
 
-export default class _PersonFinder extends React.Component { //use the underscore to differentiate this class from the imported module 'PersonFinder'
+import UserAction from '../../actions/user/UserAction';
 
-    constructor() {
-        super();
-    }
+    const _placeholder = 'Search for users';
 
-    render() {
-        return(
-            <Mode mode={1}>
-                <PersonFinder
-                    placeholder="Search for users"
-                    /**
-                    * onChange is a person finder specified event provided via the chayns api
-                    * it returns the selected user to the addUser function
-                    */
-                    onChange={this.props.addUser}
-                />
-            </Mode>
+     //the const replaces a class and just returns the jsx code
+     //has no functions like states, because its not a react component
+    const _PersonFinder = ()=> {
+        return (
+            <PersonFinder
+                placeholder={_placeholder}
+                /**
+                 * onChange is a person finder specified event provided via the chayns api
+                 * it returns the selected user to the addUser function
+                 */
+                onChange={_PersonFinder.selectUser}
+            />
         );
-    }
-};
+    };
+
+    //Pushes an user object to the state 'user' and refresh's the react component 'UserList'
+    _PersonFinder.selectUser = (object) => {
+        UserAction.addUser(object.user);
+    };
+
+    export default _PersonFinder;

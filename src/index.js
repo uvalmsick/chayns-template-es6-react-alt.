@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {ModeSwitch} from 'tobit-chayns_components/react-chayns-modeswitch';
 
-import Intro from './components/Intro';
+import Intro from './Intro';
 import Content from './components/Content';
 
 /**
@@ -33,6 +33,7 @@ chayns.ready.then(function() {
         }]
     });
 
+    console.log('chayns is ready, environment is loaded', chayns.env);
 }).catch(function() {
     console.log('no chayns environment found');
 });
